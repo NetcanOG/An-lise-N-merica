@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 int main(){
-   int k=2,precisao;
+   int k,precisao;
    double sol = 9.0,epsilon=1.0,temp;
    
    printf("intruduza a precisao.\n10^-");
