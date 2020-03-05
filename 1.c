@@ -1,21 +1,29 @@
 //clear && gcc -Werror -o 1 1.c -lm && ./1 && rm 1
-
+// possivel optimizaçao no fact para memorizaçao embora as intancias maximas tem sido 23
 #include <stdio.h>
+#include <math.h>
 
-int main(){
-   double sol = 9.0,epsilon=1.0,temp;
-   int k,precisao;
+double fact(int n){
+	double t = 1.0;
+	while(n != 0) t*=n--;
+	return t;
+}
+
+void serie(int precisao){
+   double somatorio = 0.0, termo = 1.0, epsilon = pow(0.1,precisao);
+   int k;
    
-   printf("Introduza a precisao.\n10^-");
-   scanf("%d",&precisao);
-   for(k=0; k<precisao; k++) epsilon *=(double) 1/10;
-   
-   for(k = 2;;k++) {
-      temp = (double) sol * (k * k) / ((2*k+1)*(2*k+2));
-      if(temp < epsilon) break;
-      sol = temp;
+   for(k=1; ;k++) {
+      termo = 18.0 * pow(fact(k),2) / (pow(k,2) * fact(2*k));
+      if(termo < epsilon) break;
+      somatorio += termo;
    }
    
-   printf("\nN de termos somados = %d\n",--k);
-   printf("Valor final = %.*f +- 10^-%d\n",precisao+1,sol,precisao);
+   printf("N de termos somados = %d\n",k-1);
+   printf("Valor final = %.*f +- 10^-%d\n",precisao+1,somatorio,precisao);
+   //printf("pi^2 =        %.*f\n",precisao+1,M_PI*M_PI);
+}
+
+int main(){
+   for (int i=8; i<=15; i++) serie(i);
 }
