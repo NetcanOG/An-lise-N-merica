@@ -4,7 +4,7 @@
 #include <math.h>
 
 int serie(int precisao){
-   double sum=0.0,temp=0.0,epsilon = pow(0.1,precisao);
+   double sum=0.0,temp,epsilon = pow(0.1,precisao);
    int k;
 
    for(k=1;;k++){
@@ -22,3 +22,4 @@ int serie(int precisao){
 int main(){
    for(int i=8;i<=15;i++) serie(i);
 }
+
