@@ -8,7 +8,7 @@ double mem_fact[47];
 
 void m_fact_init(){
    mem_fact[0] = 1.0;
-   for(int i=1; i<50; i++) mem_fact[i] = 0.0;
+   for(int i=1;i<50;i++) mem_fact[i] = 0.0;
 }
 
 double m_fact(int n){
