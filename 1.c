@@ -3,10 +3,18 @@
 #include <stdio.h>
 #include <math.h>
 
-double fact(int n){
-	double t = 1.0;
-	while(n != 0) t*=n--;
-	return t;
+// verifiquei que k <= 25 e suficiente
+double mem_fact[51];
+
+void m_fact_init(){
+   mem_fact[0] = 1.0;
+   for(int i=1; i<50; i++) mem_fact[i] = 0.0;
+}
+
+double m_fact(int n){
+   if(mem_fact[n] != 0.0) return mem_fact[n];
+   mem_fact[n] = n*m_fact(n-1);
+   return mem_fact[n];
 }
 
 void serie(int precisao){
@@ -14,7 +22,7 @@ void serie(int precisao){
    int k;
    
    for(k=1;;k++) {
-      termo = 18.0 * pow(fact(k),2) / (pow(k,2) * fact(2*k));
+      termo = 18.0 * pow(m_fact(k),2) / (pow(k,2) * m_fact(2*k));
       if(termo < epsilon) break;
       sum += termo;
    }
@@ -25,5 +33,7 @@ void serie(int precisao){
 }
 
 int main(){
+   m_fact_init();
+   
    for (int i=8;i<=15;i++) serie(i);
 }
