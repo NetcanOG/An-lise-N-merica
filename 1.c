@@ -17,23 +17,25 @@ double m_fact(int n){
    return mem_fact[n];
 }
 
-void serie(int precisao){
+void serie(){
+   int k,precisao = 8;
    double sum = 0.0, termo, epsilon = pow(0.1,precisao);
-   int k;
    
-   for(k=1;;k++) {
+   for(k=1;precisao <= 15;k++) {
       termo = 18.0 * pow(m_fact(k),2) / (pow(k,2) * m_fact(2*k));
-      if(termo < epsilon) break;
+      if(termo < epsilon) {
+         printf("N = %d E = 10^-%d\n",k-1,precisao);
+         printf("         S = %.*f\n",precisao+1,sum);
+         printf("|pi^2 - S| = %.*f\n\n",precisao+1,pow(M_PI,2) - sum);
+         
+         precisao++;
+         epsilon *= 0.1;
+      }
       sum += termo;
    }
-   
-   printf("N = %d E = 10^-%d\n",--k,precisao);
-   printf("         S = %.*f\n",precisao+1,sum);
-   printf("|pi^2 - S| = %.*f\n\n",precisao+1,pow(M_PI,2) - sum);
 }
 
 int main(){
    m_fact_init();
-   
-   for (int i=8;i<=15;i++) serie(i);
+   serie();
 }
