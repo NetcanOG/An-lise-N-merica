@@ -12,7 +12,7 @@ int serie(){
    int k,precisao = 8;
    double sum = 0.0,termo,epsilon = pow(0.1,precisao);
 
-   for(k=1;precisao <=15 ;k++){
+   for(k=1;precisao <=15;k++){
       termo = 12.0/pow(k,2);
       if(termo < epsilon){
          printf("N = %d E = 10^-%d\n",k-1,precisao);
