@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <math.h>
 
-// verifiquei que k <= 25 e suficiente
-double mem_fact[51];
+// verifiquei que k <= 23 e suficiente
+double mem_fact[47];
 
 void m_fact_init(){
    mem_fact[0] = 1.0;
