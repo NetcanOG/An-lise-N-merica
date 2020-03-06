@@ -23,7 +23,7 @@ void serie(){
    
    for(k=1;precisao <= 15;k++) {
       termo = 18.0 * pow(m_fact(k),2) / (pow(k,2) * m_fact(2*k));
-      if(termo < epsilon) {
+      if(termo < epsilon){
          printf("N = %d E = 10^-%d\n",k-1,precisao);
          printf("         S = %.*f\n",precisao+1,sum);
          printf("|pi^2 - S| = %.*f\n\n",precisao+1,pow(M_PI,2) - sum);

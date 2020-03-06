@@ -8,22 +8,25 @@ double d_abs(double n){
    else return -n;
 }
 
-int serie(int precisao){
-   double sum = 0.0,temp,epsilon = pow(0.1,precisao);
-   int k;
+int serie(){
+   int k,precisao = 8;
+   double sum = 0.0,termo,epsilon = pow(0.1,precisao);
 
-   for(k=1;;k++){
-      temp = 12.0/pow(k,2);
-      if(temp < epsilon) break;
-      if(k%2 == 0) sum-=temp;
-      else sum+=temp;
+   for(k=1;precisao <=15 ;k++){
+      termo = 12.0/pow(k,2);
+      if(termo < epsilon){
+         printf("N = %d E = 10^-%d\n",--k,precisao);
+         printf("         S = %.*f\n",precisao+1,sum);
+         printf("|pi^2 - S| = %.*f\n\n",precisao+1,d_abs(pow(M_PI,2) - sum));
+         
+         precisao++;
+         epsilon *= 0.1;
+      }
+      if(k%2 == 0) sum-=termo;
+      else sum+=termo;
    }
-   
-   printf("N = %d E = 10^-%d\n",--k,precisao);
-   printf("         S = %.*f\n",precisao+1,sum);
-   printf("|pi^2 - S| = %.*f\n\n",precisao+1,d_abs(pow(M_PI,2) - sum));
 }
 
 int main(){
-   for(int i=8;i<=15;i++) serie(i);
+   serie();
 }
