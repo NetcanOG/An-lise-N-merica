@@ -9,7 +9,7 @@ double d_abs(double n){
 }
 
 int serie(int precisao){
-   double sum=0.0,temp,epsilon = pow(0.1,precisao);
+   double sum = 0.0,temp,epsilon = pow(0.1,precisao);
    int k;
 
    for(k=1;;k++){
