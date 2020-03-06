@@ -21,7 +21,7 @@ void serie(int precisao){
    
    printf("N = %d E = 10^-%d\n",--k,precisao);
    printf("         S = %.*f\n",precisao+1,sum);
-   printf("|pi^2 - S| = %.*f\n\n",precisao+1,M_PI*M_PI - sum);
+   printf("|pi^2 - S| = %.*f\n\n",precisao+1,pow(M_PI,2) - sum);
 }
 
 int main(){
