@@ -10,21 +10,20 @@ double fact(int n){
 }
 
 void serie(int precisao){
-   double somatorio = 0.0, termo, epsilon = pow(0.1,precisao);
+   double sum = 0.0, termo, epsilon = pow(0.1,precisao);
    int k;
    
    for(k=1; ;k++) {
       termo = 18.0 * pow(fact(k),2) / (pow(k,2) * fact(2*k));
       if(termo < epsilon) break;
-      somatorio += termo;
+      sum += termo;
    }
    
-   printf("N de termos somados = %d\n",k-1);
-   printf("Valor final = %.*f +- 10^-%d\n",precisao+1,somatorio,precisao);
-   printf("pi^2 =        %.*f\n",precisao+1,M_PI*M_PI);
+   printf("N = %d E = 10^-%d\n",--k,precisao);
+   printf("         S = %.*f\n",precisao+1,sum);
+   printf("|pi^2 - S| = %.*f\n\n",precisao+1,M_PI*M_PI - sum);
 }
 
 int main(){
    for (int i=8; i<=15; i++) serie(i);
 }
-
