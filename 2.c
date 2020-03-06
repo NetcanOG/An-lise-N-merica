@@ -15,7 +15,7 @@ int serie(){
    for(k=1;precisao <=15 ;k++){
       termo = 12.0/pow(k,2);
       if(termo < epsilon){
-         printf("N = %d E = 10^-%d\n",--k,precisao);
+         printf("N = %d E = 10^-%d\n",k-1,precisao);
          printf("         S = %.*f\n",precisao+1,sum);
          printf("|pi^2 - S| = %.*f\n\n",precisao+1,d_abs(pow(M_PI,2) - sum));
          
