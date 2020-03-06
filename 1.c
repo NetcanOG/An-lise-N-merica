@@ -13,7 +13,7 @@ void serie(int precisao){
    double sum = 0.0, termo, epsilon = pow(0.1,precisao);
    int k;
    
-   for(k=1; ;k++) {
+   for(k=1;;k++) {
       termo = 18.0 * pow(fact(k),2) / (pow(k,2) * fact(2*k));
       if(termo < epsilon) break;
       sum += termo;
@@ -25,5 +25,5 @@ void serie(int precisao){
 }
 
 int main(){
-   for (int i=8; i<=15; i++) serie(i);
+   for (int i=8;i<=15;i++) serie(i);
 }
