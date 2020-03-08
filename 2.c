@@ -8,7 +8,7 @@ double d_abs(double n){
    else return -n;
 }
 
-int serie(){
+void serie(){
    int k,precisao = 8;
    double sum = 0.0,termo,epsilon = pow(0.1,precisao);
 
