@@ -51,6 +51,33 @@ void iter_simples(double x0, int nmax){
   if(i > nmax) printf("Metodo iterativo simples: não foi possível ao fim de %d iteracoes encontrar a solucao com o erro pretendido\n", i);
   else printf("Metodo iterativo simples: n = %d, v= %.*f, erroiter = %.*f\n", i, precisao+1,x1, precisao+1,erroiter); 
 }
+//METODO DE NEWTONE
+
+double f(double x){
+    return pow(x,2)-x-sin(x+0.15);
+}
+
+double df(double x){
+    return 2*x-cos(x-0.15)-1;
+}
+
+
+void newton(double a,double b){
+    int iter,precisao=8;
+    double h,x1,x0=a;
+    double erroiter = absoluto(b-a),epsilon = 5 * pow(0.1,precisao);
+
+    while(erroiter>epsilon){
+        h=f(x0)/df(x0);
+        x1=x0-h;
+        erroiter = absoluto(x1-x0);
+        iter++;
+        x0=x1;
+        
+    }
+
+printf("Metodo de Newton: n = %d, v= %.*f, erro= %.*f\n",iter,precisao+1,x1,precisao+1,erroiter);
+}
 
 int main(){
    bissec_suc(1.6,1.7);
