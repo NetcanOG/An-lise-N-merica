@@ -1,11 +1,11 @@
 /* Separem graficamente as raı́zes de F (x) = 0 e determinem um intervalo I de amplitude 10^−1 que contenha a maior delas.
-
 [1.6;1.7]
 VALOR CORRETO = 1.61002255591604 */
 
 #include <stdio.h>
 #include <math.h>
 
+//BISSECAO SUCESSIVA
 double func(double x){
    return pow(x,2) - x - sin(x + 0.15);
 }
@@ -23,9 +23,36 @@ void bissec_suc(double a, double b){
       else a = m;
       erro /= 2;
    }
-   printf("n = %d, v = %.*f\n",i,precisao+1,m);
+   printf("Metodo de bissecao sucessiva: n = %d, v = %.*f\n",i,precisao+1,m);
+}
+
+//ITERATIVO SIMPLES
+double func_iterativa(double x){
+  return 1 + (sin(x + 0.15)) / x;
+  //Função obtida por manipulação algébrica da função original
+}
+
+double absoluto(double x){
+  if(x >= 0.0) return x;
+  else return -x; 
+}
+
+void iter_simples(double x0, int nmax){
+  int i = 1, precisao = 8;
+  double x1 = func_iterativa(x0);
+  double erroiter = absoluto(x1 - x0), epsilon = 5 * pow(0.1,precisao);
+
+  while( i <= nmax && erroiter > epsilon){
+    x0 = x1;
+    x1 = func_iterativa(x0);
+    erroiter = absoluto(x1 - x0);
+    i++;
+  }
+  if(i > nmax) printf("Metodo iterativo simples: não foi possível ao fim de %d iteracoes encontrar a solucao com o erro pretendido\n", i);
+  else printf("Metodo iterativo simples: n = %d, v= %.*f, erroiter = %.*f\n", i, precisao+1,x1, precisao+1,erroiter); 
 }
 
 int main(){
    bissec_suc(1.6,1.7);
+   iter_simples(1.6,20);
 }
