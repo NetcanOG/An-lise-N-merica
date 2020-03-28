@@ -23,7 +23,7 @@ void bissec_suc(double a, double b){
       else a = m;
       erro /= 2;
    }
-   printf("Metodo de bissecao sucessiva: n = %d, v = %.*f\n",i,precisao+1,m);
+   printf("Metodo de bissecao sucessiva: n = %d, v = %.*f, erro = %.*f\n",i,precisao+1,m,precisao+1,erro);
 }
 
 //ITERATIVO SIMPLES
@@ -49,10 +49,10 @@ void iter_simples(double x0, int nmax){
     i++;
   }
   if(i > nmax) printf("Metodo iterativo simples: não foi possível ao fim de %d iteracoes encontrar a solucao com o erro pretendido\n", i);
-  else printf("Metodo iterativo simples: n = %d, v= %.*f, erroiter = %.*f\n", i, precisao+1,x1, precisao+1,erroiter); 
+  else printf("Metodo iterativo simples: n = %d, v= %.*f, erro = %.*f\n", i, precisao+1,x1, precisao+1,erroiter); 
 }
-//METODO DE NEWTONE
 
+//METODO DE NEWTONE
 double f(double x){
     return pow(x,2)-x-sin(x+0.15);
 }
@@ -76,10 +76,11 @@ void newton(double a,double b){
         
     }
 
-printf("Metodo de Newton: n = %d, v= %.*f, erro= %.*f\n",iter,precisao+1,x1,precisao+1,erroiter);
+printf("Metodo de Newton: n = %d, v= %.*f, erro = %.*f\n",iter,precisao+1,x1,precisao+1,erroiter);
 }
 
 int main(){
    bissec_suc(1.6,1.7);
    iter_simples(1.6,20);
+   newton(1.6,1.7);
 }
