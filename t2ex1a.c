@@ -63,7 +63,7 @@ double df(double x){
 
 
 void newton(double a,double b){
-    int iter,precisao=8;
+    int iter=1,precisao=8;
     double h,x1,x0=a;
     double erroiter = absoluto(b-a),epsilon = 5 * pow(0.1,precisao);
 
