@@ -1,4 +1,4 @@
-/* Separem graficamente as raı́zes de F (x) = 0 e determinem um intervalo I de amplitude 10^−1 que contenha a maior delas.
+//* Separem graficamente as raı́zes de F (x) = 0 e determinem um intervalo I de amplitude 10^−1 que contenha a maior delas.
 [1.6;1.7]
 VALOR CORRETO = 1.61002255591604 */
 
@@ -23,7 +23,7 @@ void bissec_suc(double a, double b){
       else a = m;
       erro /= 2;
    }
-   printf("Metodo de bissecao sucessiva: n = %d, v = %.*f, erro = %.*f\n",i,precisao+1,m,precisao+1,erro);
+   printf("Metodo de bissecao sucessiva: n = %d, v = %.*f\n",i,precisao+1,m);
 }
 
 //ITERATIVO SIMPLES
@@ -49,10 +49,11 @@ void iter_simples(double x0, int nmax){
     i++;
   }
   if(i > nmax) printf("Metodo iterativo simples: não foi possível ao fim de %d iteracoes encontrar a solucao com o erro pretendido\n", i);
-  else printf("Metodo iterativo simples: n = %d, v= %.*f, erro = %.*f\n", i, precisao+1,x1, precisao+1,erroiter); 
+  else printf("Metodo iterativo simples: n = %d, v= %.*f, erroiter = %.*f\n", i, precisao+1,x1, precisao+1,erroiter); 
 }
 
 //METODO DE NEWTONE
+
 double f(double x){
     return pow(x,2)-x-sin(x+0.15);
 }
@@ -62,25 +63,27 @@ double df(double x){
 }
 
 
-void newton(double a,double b){
+void newton(double a){
     int iter=1,precisao=8;
-    double h,x1,x0=a;
-    double erroiter = absoluto(b-a),epsilon = 5 * pow(0.1,precisao);
+    double h,x0=a;
+    double x1=x0-(f(x0)/df(x0));
+    double erroiter = absoluto(x1-a),epsilon = 5 * pow(0.1,precisao);
 
-    while(erroiter>epsilon){
-        h=f(x0)/df(x0);
-        x1=x0-h;
+    while(erroiter>=epsilon){
+        x0=x1;
+        x1=x0-f(x0)/df(x0);
         erroiter = absoluto(x1-x0);
         iter++;
-        x0=x1;
         
     }
 
-printf("Metodo de Newton: n = %d, v= %.*f, erro = %.*f\n",iter,precisao+1,x1,precisao+1,erroiter);
+printf("Metodo de Newton: n = %d, v= %.*f, erro= %.*f\n",iter,precisao+1,x1,precisao+1,erroiter);
 }
+
+
 
 int main(){
    bissec_suc(1.6,1.7);
    iter_simples(1.6,20);
-   newton(1.6,1.7);
+   newton(1.6);
 }
