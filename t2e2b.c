@@ -17,17 +17,19 @@ double df(double x){
 }
 
 
-void newton(double a,double b){
+void newton(double a){
     int iter=1,precisao=6;
-    double h,x1,x0=a;
-    double erroiter = absoluto(b-a),epsilon = pow(0.1,precisao);
+    double h,x0=a;
+    double x1=x0-(f(x0)/df(x0));
+    double erroiter = absoluto(x1-a),epsilon = pow(0.1,precisao);
 
-    while(erroiter>epsilon){
+    while(erroiter>=epsilon ){
+        x0=x1;
         h=f(x0)/df(x0);
         x1=x0-h;
         erroiter = absoluto(x1-x0);
         iter++;
-        x0=x1;
+       
         
     }
  
@@ -37,7 +39,7 @@ printf("Metodo de Newton:n= %d, v= %.*f, erro= %.*f\n",iter,precisao+1,x1,precis
 
 
 int main(){
-    newton(3.5,6.5);
-    newton(6.5,6.5);
-    newton(4.4,6.5);
+    newton(3.5);
+    newton(6.5);
+    newton(4.4);
 }
