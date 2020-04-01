@@ -1,19 +1,23 @@
-//* Separem graficamente as raı́zes de F (x) = 0 e determinem um intervalo I de amplitude 10^−1 que contenha a maior delas.
+/* Separem graficamente as raı́zes de F (x) = 0 e determinem um intervalo I de amplitude 10^−1 que contenha a maior delas.
 [1.6;1.7]
 VALOR CORRETO = 1.61002255591604 */
 
 #include <stdio.h>
 #include <math.h>
 
-//BISSECAO SUCESSIVA
+double absoluto(double x){
+  if(x >= 0.0) return x;
+  else return -x; 
+}
+
 double func(double x){
    return pow(x,2) - x - sin(x + 0.15);
 }
 
-// b >= a
+//BISSECAO SUCESSIVA
 void bissec_suc(double a, double b){
    int i,precisao = 8;
-   double m,f_m,f_a, epsilon = 5 * pow(0.1,precisao), erro = b - a;
+   double m,f_m,f_a, epsilon = 5 * pow(0.1,precisao), erro = absoluto(b - a);
    for(i=0; erro > epsilon; i++){
       m = (a + b)/2.0;
       f_m = func(m);
@@ -23,18 +27,13 @@ void bissec_suc(double a, double b){
       else a = m;
       erro /= 2;
    }
-   printf("Metodo de bissecao sucessiva: n = %d, v = %.*f\n",i,precisao+1,m);
+   printf("Metodo de bissecao sucessiva: n = %d, v = %.*f, erro= %.*f\n", i, precisao+1, m, precisao+1, erro);
 }
 
 //ITERATIVO SIMPLES
 double func_iterativa(double x){
-  return 1 + (sin(x + 0.15)) / x;
+  return 1 + (sin(x + 0.15) / x);
   //Função obtida por manipulação algébrica da função original
-}
-
-double absoluto(double x){
-  if(x >= 0.0) return x;
-  else return -x; 
 }
 
 void iter_simples(double x0, int nmax){
@@ -48,39 +47,30 @@ void iter_simples(double x0, int nmax){
     erroiter = absoluto(x1 - x0);
     i++;
   }
+  
   if(i > nmax) printf("Metodo iterativo simples: não foi possível ao fim de %d iteracoes encontrar a solucao com o erro pretendido\n", i);
-  else printf("Metodo iterativo simples: n = %d, v= %.*f, erroiter = %.*f\n", i, precisao+1,x1, precisao+1,erroiter); 
+  else printf("Metodo iterativo simples: n = %d, v= %.*f, erro = %.*f\n", i, precisao+1, x1, precisao+1, erroiter); 
 }
 
-//METODO DE NEWTONE
-
-double f(double x){
-    return pow(x,2)-x-sin(x+0.15);
-}
-
+//METODO DE NEWTON
 double df(double x){
-    return 2*x-cos(x-0.15)-1;
+    return x*2 - 1 - cos(x - 0.15);
 }
 
+void newton(double x0){
+    int iter = 1, precisao = 8;
+    double x1 = x0 - (func(x0)/df(x0));
+    double erroiter = absoluto(x1-x0), epsilon = 5 * pow(0.1,precisao);
 
-void newton(double a){
-    int iter=1,precisao=8;
-    double h,x0=a;
-    double x1=x0-(f(x0)/df(x0));
-    double erroiter = absoluto(x1-a),epsilon = 5 * pow(0.1,precisao);
-
-    while(erroiter>=epsilon){
-        x0=x1;
-        x1=x0-f(x0)/df(x0);
-        erroiter = absoluto(x1-x0);
+    while(erroiter >= epsilon){
+        x0 = x1;
+        x1 = x0 - func(x0)/df(x0);
+        erroiter = absoluto(x1 - x0);
         iter++;
-        
     }
 
-printf("Metodo de Newton: n = %d, v= %.*f, erro= %.*f\n",iter,precisao+1,x1,precisao+1,erroiter);
+	printf("Metodo de Newton: n = %d, v= %.*f, erro=%.*f\n", iter, precisao+1, x1, precisao+1, erroiter);
 }
-
-
 
 int main(){
    bissec_suc(1.6,1.7);
