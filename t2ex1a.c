@@ -74,6 +74,6 @@ void newton(double x0){
 
 int main(){
    bissec_suc(1.55,1.65);
-   iter_simples(1.55,20);
+   iter_simples(1.55,22);
    newton(1.65);
 }
