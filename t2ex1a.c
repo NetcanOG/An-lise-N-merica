@@ -37,7 +37,7 @@ double func_iterativa(double x){
 }
 
 void iter_simples(double x0, int nmax){
-  int i = 1, precisao = 8;
+  int i = 0, precisao = 8;
   double x1 = func_iterativa(x0);
   double erroiter = absoluto(x1 - x0), epsilon = 5 * pow(0.1,precisao);
 
@@ -58,7 +58,7 @@ double df(double x){
 }
 
 void newton(double x0){
-    int iter = 1, precisao = 8;
+    int iter = 0, precisao = 8;
     double x1 = x0 - (func(x0)/df(x0));
     double erroiter = absoluto(x1-x0), epsilon = 5 * pow(0.1,precisao);
 
