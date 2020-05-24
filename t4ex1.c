@@ -2,7 +2,7 @@
 #include <math.h>
 
 double a = 0.0, b = 3.0;
-double M_integral_rect = 1.26038; //calculado externamente
+double M_integral_rect = 1.261; //calculado externamente
 
 double func(double x){
 	return sin(cos(sin(cos(pow(x,2.0)))));
@@ -19,7 +19,6 @@ unsigned long intervalo_rect(double epsilon){
 		erro = (double)((b - a)/2.0 * h * M_integral_rect);
 	}
 	
-	printf("%li\n",n);
 	return n;
 }
 
