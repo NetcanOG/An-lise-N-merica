@@ -31,12 +31,14 @@ double integral_trap(double epsilon){
 		value += func(a + (i)*h);
 	}
 	
-	return value*h + h/2.0*(func(a) + func(b));
+	value = value*h + h/2.0*(func(a) + func(b));
+	printf("n = %li\n",n);
+	printf("value = %.15f\n\n", value);
+	return value;
 }
 
 int main(){
-	printf("%.15f\n",integral_trap(pow(10,-5)));
-	printf("%.15f\n",integral_trap(pow(10,-7)));
-	printf("%.15f\n",integral_trap(pow(10,-9)));
+	integral_trap(pow(10,-5);
+	integral_trap(pow(10,-7);
+	integral_trap(pow(10,-9);
 }
-
