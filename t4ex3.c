@@ -2,7 +2,7 @@
 #include <math.h>
 
 double a = 0.0, b = 3.0;
-double M_integral_simps = 3385; //calculado externamente
+double M_integral_simps = 3385.0; //calculado externamente
 
 double func(double x){
 	return sin(cos(sin(cos(pow(x,2.0)))));
