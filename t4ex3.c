@@ -2,7 +2,7 @@
 #include <math.h>
 
 double a = 0.0, b = 3.0;
-double M_integral_simps = 3385.0; //calculado externamente
+double M_integral_simps = 3385; //calculado externamente
 
 double func(double x){
 	return sin(cos(sin(cos(pow(x,2.0)))));
@@ -16,7 +16,7 @@ unsigned long intervalo_simps(double epsilon){
 	while( erro > epsilon ){
 		n <<= 1;
 		h = (double)(b - a)/n;
-		erro = (double)((b - a)/2.0 * h * M_integral_simps);
+		erro = (double)((pow(h,4.0)/180)*(b - a)* M_integral_simps);
 	}
 
 	printf("%li\n",n);
