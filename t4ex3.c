@@ -41,7 +41,7 @@ double integral_simps(double epsilon){
 }
 
 int main(){
-	integral_simps(pow(10,-5);
-	integral_simps(pow(10,-7);
-	integral_simps(pow(10,-9);
+	integral_simps(pow(10,-5));
+	integral_simps(pow(10,-7));
+	integral_simps(pow(10,-9));
 }

@@ -38,7 +38,8 @@ double integral_trap(double epsilon){
 }
 
 int main(){
-	integral_trap(pow(10,-5);
-	integral_trap(pow(10,-7);
-	integral_trap(pow(10,-9);
+	integral_trap(pow(10,-5));
+	//integral_trap(pow(10,-7));
+	//integral_trap(pow(10,-9));
 }
+

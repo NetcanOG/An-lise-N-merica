@@ -38,7 +38,7 @@ double integral_rect(double epsilon){
 }
 
 int main(){
-	integral_rect(pow(10,-5);
-	integral_rect(pow(10,-7);
-	integral_rect(pow(10,-9);
+	integral_rect(pow(10,-5));
+	integral_rect(pow(10,-7));
+	integral_rect(pow(10,-9));
 }
